@@ -1,0 +1,62 @@
+version: '3.9'
+
+networks:
+  infra:
+    name: catchub
+
+services:
+
+  backend:
+    build: 
+      context: ../backend
+      dockerfile: Dockerfile
+    image: backend:catchub
+    container_name: backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../backend/app:/app
+      - /app/node_modules
+    depends_on:
+      - database
+      - redis
+    env_file:
+      - .env
+    networks:
+      - infra
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: always
+
+  database:
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    image: database:catchub
+    container_name: ${POSTGRES_HOST}
+    expose:
+      - "5432"
+    env_file:
+      - .env
+    networks:
+      - infra
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: always
+  
+  redis:
+    image: redis:latest
+    container_name: redis
+    expose:
+      - "6379"
+    networks:
+      - infra
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+    restart: always

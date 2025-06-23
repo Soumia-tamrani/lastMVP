@@ -1,0 +1,10 @@
+# This file specifies files and directories to ignore when building the docker image for the backend
+
+*.log
+*.tmp
+*.bak
+*.swp
+*.DS_Store
+node_modules/
+dist/
+build/
