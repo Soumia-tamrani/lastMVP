@@ -1,5 +1,5 @@
 # ============================================================================
-# CatchHub Backend - Docker Management Makefile
+# Docker Management Makefile
 # ============================================================================
 
 # Variables
@@ -47,7 +47,7 @@ fclean: ## Complete cleanup: remove containers, networks, volumes, and images
 	@docker-compose -f $(COMPOSE_FILE) down --remove-orphans --volumes --rmi all
 	@docker system prune -f
 	@docker builder prune -f
-	@rm -rf backend/app/node_modules
+# @rm -rf backend/app/node_modules
 	@echo "$(GREEN)✓ Full cleanup completed$(NC)"
 
 restart: ## Restart all services

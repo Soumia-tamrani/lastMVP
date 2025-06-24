@@ -19,6 +19,8 @@ do
 done
 echo "Redis is up - continuing..."
 
+export CHOKIDAR_USEPOLLING=true
+
 # Start the NestJS application in development mode
 echo "Starting NestJS application..."
 npm run start:dev

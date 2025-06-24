@@ -23,8 +23,10 @@
 ### Environment Setup
 
 1. Create environment file:
+
+You have to be in the root dir of the project 
+
 ```bash
-cd backend
 cp .env.example .env
 ```
 
@@ -53,7 +55,6 @@ make
 | `make shell` | Access backend container shell |
 | `make shell-db` | Access database container shell |
 | `make dev` | Start development environment with live reload |
-| `make prod-build` | Build production images |
 
 ### Manual Docker Commands
 
