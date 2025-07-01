@@ -1,0 +1,34 @@
+# Force LF (Unix) for all code/text files
+* text=auto
+
+# Source code files
+*.js   text eol=lf
+*.ts   text eol=lf
+*.jsx  text eol=lf
+*.tsx  text eol=lf
+
+# Configuration and data files
+*.json text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
+*.env  text eol=lf
+*.md   text eol=lf
+*.html text eol=lf
+*.css  text eol=lf
+*.scss text eol=lf
+
+# Shell and scripts
+*.sh   text eol=lf
+*.bash text eol=lf
+
+# Ignore generated binaries and images
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.mp4  binary
+*.pdf  binary
+
+# Ignore compiled files and build output
+/dist/** text eol=lf
